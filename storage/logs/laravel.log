@@ -1,0 +1,32 @@
+[2024-11-10 09:14:40] local.ERROR: Cannot redeclare App\Models\Order::store() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\Order::store() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\Order.php:23)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:21:55] local.ERROR: Cannot redeclare App\Models\OrderItem::status() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\OrderItem::status() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\OrderItem.php:24)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:22:23] local.ERROR: Cannot redeclare App\Models\OrderItem::status() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\OrderItem::status() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\OrderItem.php:28)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:22:47] local.ERROR: Cannot redeclare App\Models\OrderItem::product() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\OrderItem::product() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\OrderItem.php:33)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:23:19] local.ERROR: Cannot redeclare App\Models\Product::store() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\Product::store() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\Product.php:24)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:30:47] local.ERROR: Cannot redeclare App\Models\OrderContribution::orderItem() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\OrderContribution::orderItem() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\OrderContribution.php:27)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:30:52] local.ERROR: Cannot redeclare App\Models\OrderContribution::orderItem() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\OrderContribution::orderItem() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\OrderContribution.php:27)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-10 09:31:17] local.ERROR: Cannot redeclare App\Models\User::order() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Models\\User::order() at C:\\xampp\\htdocs\\Reatail-And-Whole\\app\\Models\\User.php:44)
+[stacktrace]
+#0 {main}
+"} 
