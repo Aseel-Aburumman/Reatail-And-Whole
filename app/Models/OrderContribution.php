@@ -13,7 +13,6 @@ class OrderContribution extends Model
         'order_item_id',
         'retailer_id',
         'quantity',
-        'contribution_date',
 
 
 
