@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('order_item_id');
             $table->unsignedBigInteger('retailer_id');
             $table->integer('quantity');
-            $table->timestamp('contribution_date ');
 
             $table->foreign('order_item_id')->references('id')->on('order_items')->onDelete('cascade');
             $table->foreign('retailer_id')->references('id')->on('users')->onDelete('cascade');
