@@ -52,3 +52,8 @@ Route::get('/product_details', function () {
 Route::get('/shop', function () {
     return view('shop');
 });
+//////////////////////////////////////////
+/////////////////////////
+/////////////////
+/////////
+/////
