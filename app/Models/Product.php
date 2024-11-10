@@ -13,7 +13,9 @@ class Product extends Model
         'price',
         'description',
         'minimumquantities',
-        'store_id'
+        'store_id',
+        'image'
+
     ];
 
     public function store()
@@ -25,5 +27,4 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    
 }
