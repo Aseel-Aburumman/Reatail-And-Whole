@@ -53,3 +53,15 @@ Route::get('/product_details', function () {
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 
+Route::get('/shop', function () {
+    return view('shop');
+});
+
+Route::get('/dashboard', function () {
+    return view('Admin.dashboard');
+});
+//////////////////////////////////////////
+/////////////////////////
+/////////////////
+/////////
+/////

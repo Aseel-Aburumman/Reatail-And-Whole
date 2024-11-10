@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('wholesaler_application_status')->default('pending'); // Values: 'pending', 'approved', 'rejected'
-
             $table->rememberToken();
             $table->timestamps();
         });
