@@ -8,13 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'price',
-        'description',
-        'minimumquantities',
-        'store_id'
-    ];
+    protected $fillable = ['name', 'price', 'description', 'minimumquantities', 'store_id', 'image'];
+
 
     public function store()
     {
@@ -25,5 +20,5 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    
+
 }
