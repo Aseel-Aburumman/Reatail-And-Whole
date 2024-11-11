@@ -39,4 +39,30 @@ class OrderItem extends Model
     {
         return $this->hasMany(OrderContribution::class);
     }
+
+
+    public static function getAllOrderItems()
+    {
+        return self::all();
+    }
+
+    public static function createOrderItem(array $data)
+    {
+        return self::create($data);
+    }
+
+    public function updateOrderItem(array $data)
+    {
+        return $this->update($data);
+    }
+
+    public function deleteOrderItem()
+    {
+        return $this->delete();
+    }
+
+    public static function findOrderItemById(int $id)
+    {
+        return self::find($id);
+    }
 }
