@@ -5,29 +5,64 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // Get all products
     public function index()
     {
-        $products = Product::all();
+        // جلب جميع المنتجات
+        $products = Product::getAllProducts();
 
-        $products = Product::orderBy('created_at', 'desc')->get();
-        return view('shop', ['products' => ProductResource::collection($products)]);
+        // إرجاع العرض إلى صفحة المنتجات مع تمرير البيانات
+        return view('admin.products.index', compact('products'));
     }
 
-    public function store(ProductRequest $request)
-    {
-        $validatedData = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
-            $validatedData['image'] = $imagePath;
+    // Create a new product
+    public function store(ProductRequest $request): JsonResponse
+    {
+        $product = Product::createProduct($request->validated());
+        return response()->json(new ProductResource($product), 201);
+    }
+
+    // Get a single product by ID
+    public function show(int $id): JsonResponse
+    {
+        $product = Product::findProductById($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
         }
 
-        $product = Product::create($validatedData);
+        return response()->json(new ProductResource($product), 200);
+    }
 
-        return new ProductResource($product);
+    // Update a product
+    public function update(ProductRequest $request, int $id): JsonResponse
+    {
+        $product = Product::findProductById($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        $product->updateProduct($request->validated());
+        return response()->json(new ProductResource($product), 200);
+    }
+
+    // Delete a product
+    public function destroy(int $id): JsonResponse
+    {
+        $product = Product::findProductById($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        $product->deleteProduct();
+        return response()->json(['message' => 'Product deleted successfully'], 200);
     }
 }
-
