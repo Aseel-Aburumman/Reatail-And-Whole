@@ -78,14 +78,16 @@ Route::get('/shop', function () {
 // });
 
 Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
-Route::post('/orders', [OrderController::class, 'store'])->name('admin.order.create');
+Route::get('/orders/create', [OrderController::class, 'create'])->name('admin.order.create');
+Route::post('/orders', [OrderController::class, 'store'])->name('admin.order.store');
 Route::get('/orders/{id}', [OrderController::class, 'show'])->name('admin.order.show');
-Route::put('/orders/{id}', [OrderController::class, 'update'])->name('admin.order.edit');
+Route::put('/orders/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy');
 
 Route::get('/ordersItem', [OrderItemController::class, 'index']);
 Route::post('/ordersItem', [OrderItemController::class, 'store']);
-Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
+Route::get('/ordersItem/{id}', [OrderItemController::class, 'show'])->name('admin.orderItem.show');
 Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
 Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
 
@@ -177,7 +179,5 @@ Route::get('/', function () {
 
 //admin dashboard
 
-    Route::resource('price_tiers', PriceTierController::class);
-    Route::resource('statuses', StatusController::class);
-
-
+Route::resource('price_tiers', PriceTierController::class);
+Route::resource('statuses', StatusController::class);

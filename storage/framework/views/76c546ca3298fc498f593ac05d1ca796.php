@@ -29,6 +29,7 @@
                             <th>Deadline</th>
                             <td><?php echo e($Order->deadline); ?></td>
                         </tr>
+
                         <tr>
                             <th>Created At</th>
                             <td><?php echo e($Order->created_at->format('Y-m-d H:i:s')); ?></td>
@@ -39,6 +40,8 @@
                         </tr>
                     </tbody>
                 </table>
+                <a href="<?php echo e(route('admin.orderItem.show', $Order->id)); ?>" class="mt-4 btn btn-warning  me-2">Show Order
+                    Detail</a>
                 <a href="<?php echo e(route('order.index')); ?>" class="btn btn-secondary mt-4">Back to User List</a>
                 <!-- Extra space for button -->
             </div>
