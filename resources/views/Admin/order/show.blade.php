@@ -8,7 +8,7 @@
     <div class="container mt-5 pt-5 pb-3"> <!-- Increased top margin and padding -->
         <div class="card shadow-sm rounded"> <!-- Card for structured layout -->
             <div class="card-header bg-secondary text-white">
-                <h2>User Details</h2>
+                <h2>Order Details</h2>
             </div>
             <div class="card-body">
                 <table class="table table-borderless">
@@ -42,7 +42,7 @@
                 </table>
                 <a href="{{ route('admin.orderItem.show', $Order->id) }}" class="mt-4 btn btn-warning  me-2">Show Order
                     Detail</a>
-                <a href="{{ route('order.index') }}" class="btn btn-secondary mt-4">Back to User List</a>
+                <a href="{{ route('order.index') }}" class="btn btn-secondary mt-4">Back to Order List</a>
                 <!-- Extra space for button -->
             </div>
         </div>

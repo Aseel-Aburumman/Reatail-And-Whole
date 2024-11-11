@@ -31,20 +31,18 @@
                 </table>
 
                 <h4 class="mt-4">Order Items</h4>
-                <div class="accordion" id="orderItemsAccordion">
+
+                <!-- Loop through each order item -->
+                <div class="order-items-list">
                     <?php $__currentLoopData = $Order->orderItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="card mb-3">
-                            <div class="card-header">
-                                <a class="btn btn-link" data-toggle="collapse" href="#collapseItem<?php echo e($item->id); ?>"
-                                    role="button" aria-expanded="false" aria-controls="collapseItem<?php echo e($item->id); ?>">
-                                    <?php echo e($item->product->name); ?> - Total Quantity: <?php echo e($item->total_quantity); ?>
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo e($item->product->name); ?></h5>
+                                <p><strong>Total Quantity:</strong> <?php echo e($item->total_quantity); ?></p>
 
-                                </a>
-                            </div>
-                            <div id="collapseItem<?php echo e($item->id); ?>" class="collapse">
-                                <div class="card-body">
-                                    <table class="table table-sm">
-                                        <thead>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-bordered">
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>Contributor</th>
                                                 <th>Quantity Contributed</th>
@@ -64,8 +62,7 @@
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-                <a href="<?php echo e(route('admin.orderItem.show', $Order->id)); ?>" class="btn btn-warning btn-sm me-2">Show Order
-                    Detail</a>
+
                 <a href="<?php echo e(route('order.index')); ?>" class="btn btn-secondary mt-4">Back to User List</a>
                 <!-- Extra space for button -->
             </div>
