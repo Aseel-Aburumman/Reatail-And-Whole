@@ -1,12 +1,17 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderContributionController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +85,44 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
     Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
     Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
+// Route for the Admin dashboard
+Route::get('/dashboard', function () {
+    return view('Admin.dashboard');
+})->name('dashboard');
+
+
+// Route for listing users
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+
+// Route for showing the form to create a new user
+Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+
+// Route for storing a new user
+Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+
+// Route for showing a specific user
+Route::get('/admin/users/{id}', [UserController::class, 'show'])->name('admin.users.show');
+
+// Route for showing the form to edit an existing user
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+
+// Route for updating an existing user
+Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+
+// Route for deleting a user
+Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
+
+
+// Route::post('/login', function (Request $request) {
+//     $credentials = $request->only('email', 'password');
+
+//     if (Auth::attempt($credentials)) {
+//         return redirect()->intended('/dashboard');
+//     }
+
+//     return redirect()->back()->with('error', 'Invalid credentials');
+// })->name('login');
 });
 
 Route::get('/', function () {

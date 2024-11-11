@@ -15,7 +15,10 @@
             </div>
         </div>
         <!-- Hero Area End-->
+<<<<<<< HEAD
+=======
 
+>>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
         <!--================login_part Area =================-->
         <section class="login_part section_padding ">
             <div class="container">
@@ -26,13 +29,25 @@
                                 <h2>New to our Shop?</h2>
                                 <p>There are advances being made in science and technology
                                     everyday, and a good example of this is the</p>
+<<<<<<< HEAD
+                                <a href="#" class="btn_3">Create an Account</a>
+=======
                                 <a href="<?php echo e(route('register.view')); ?>" class="btn_3">Create an Account</a>
+>>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="login_part_form">
                             <div class="login_part_form_iner">
+<<<<<<< HEAD
+                                <h3>Welcome Back ! <br>
+                                    Please Sign in now</h3>
+                                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control" id="name" name="name" value=""
+                                            placeholder="Username">
+=======
                                 <h3>Welcome Back! <br>
                                     Please Sign in now</h3>
 
@@ -65,10 +80,23 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+>>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="password" class="form-control" id="password" name="password" value=""
                                             placeholder="Password">
+<<<<<<< HEAD
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <div class="creat_account d-flex align-items-center">
+                                            <input type="checkbox" id="f-option" name="selector">
+                                            <label for="f-option">Remember me</label>
+                                        </div>
+                                        <button type="submit" value="submit" class="btn_3">
+                                            log in
+                                        </button>
+                                        <a class="lost_pass" href="#">forget password?</a>
+=======
                                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -89,6 +117,7 @@ unset($__errorArgs, $__bag); ?>
                                             Log in
                                         </button>
                                         <a class="lost_pass" href="#">Forget password?</a>
+>>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
                                     </div>
                                 </form>
                             </div>
@@ -99,6 +128,10 @@ unset($__errorArgs, $__bag); ?>
         </section>
         <!--================login_part end =================-->
     </main>
+<<<<<<< HEAD
+   <?php $__env->stopSection(); ?>
+=======
 <?php $__env->stopSection(); ?>
+>>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
 
 <?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/login.blade.php ENDPATH**/ ?>
