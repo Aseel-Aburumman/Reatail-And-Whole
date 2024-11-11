@@ -20,6 +20,12 @@
             </li>
 
             <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
+            <li class="">
+                <a class="nav-link" href="<?php echo e(route('admin.products.index')); ?>">
+                    <i class="fas fa-hand-point-right"></i>
+                    <span>Product Manage</span>
+                </a>
+            </li>
 
             <li class=""><a class="nav-link" href="form.html"><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
 

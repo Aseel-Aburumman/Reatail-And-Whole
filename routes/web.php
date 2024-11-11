@@ -25,6 +25,11 @@ use App\Http\Controllers\AuthController;
 */
 
 
+Route::resource('products', ProductController::class);
+
+Route::get('/', function () {
+    return view('index');
+});
 Route::get('/about', function () {
     return view('about');
 });
@@ -137,3 +142,18 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.view'
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+// });
+Route::prefix('dashboard/products')->name('admin.products.')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/', [ProductController::class, 'store'])->name('store');
+    Route::get('/{id}', [ProductController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [ProductController::class, 'update'])->name('update');
+    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy');
+});
+//////////////////////////////////////////
+/////////////////////////
+/////////////////
+/////////
+/////
