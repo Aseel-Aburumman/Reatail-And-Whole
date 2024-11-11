@@ -11,42 +11,32 @@
                 <h2>Edit Order</h2>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.order.update', $Order->id) }}" method="POST">
+                <form action="{{ route('admin.OrderContribution.update', $Ordercontribution->id) }}" method="POST">
                     @csrf
                     @method('PUT')
 
+                    <input type="hidden" name="order_item_id" value="12345">
 
 
                     <div class="form-group mb-3">
-                        <label for="initiator_retailer_id">Order Made By</label>
-                        <select class="form-control" id="initiator_retailer_id" name="initiator_retailer_id" required>
+                        <label for="retailer_id">Contributor</label>
+                        <select class="form-control" id="retailer_id" name="retailer_id" required>
                             <option value="">Select a retailer</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}"
-                                    {{ isset($Order) && $Order->initiator_retailer_id == $user->id ? 'selected' : '' }}>
+                                    {{ isset($Ordercontribution) && $Ordercontribution->retailer_id == $user->id ? 'selected' : '' }}>
                                     {{ $user->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label for="store_id">Store Name</label>
-                        <select class="form-control" id="store_id" name="store_id" required>
-                            <option value="">Select a Store</option>
-                            @foreach ($stores as $store)
-                                <option value="{{ $store->id }}"
-                                    {{ isset($Order) && $Order->store_id == $store->id ? 'selected' : '' }}>
-                                    {{ $store->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+
 
                     <div class="form-group mb-3">
-                        <label for="deadline">Deadline</label>
-                        <input type="date" class="form-control" id="deadline" name="deadline"
-                            value="{{ $Order->deadline }}" required>
+                        <label for="quantity">quantity</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity"
+                            value="{{ $Ordercontribution->quantity }}" required>
                     </div>
 
 

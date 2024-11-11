@@ -85,11 +85,21 @@ Route::put('/orders/{id}', [OrderController::class, 'update'])->name('admin.orde
 Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
 Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy');
 
+Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
+Route::post('/OrderContribution', [OrderContributionController::class, 'store'])->name('admin.OrderContribution.store');
+Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show'])->name('admin.OrderContribution.show');
+Route::get('/OrderContribution/edit/{id}', [OrderContributionController::class, 'edit'])->name('admin.OrderContribution.edit');
+Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update'])->name('admin.OrderContribution.update');
+Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy'])->name('admin.OrderContribution.destroy');
+
 Route::get('/ordersItem', [OrderItemController::class, 'index']);
 Route::post('/ordersItem', [OrderItemController::class, 'store']);
 Route::get('/ordersItem/{id}', [OrderItemController::class, 'show'])->name('admin.orderItem.show');
-Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
-Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
+Route::put('/ordersItem/{id}', [OrderItemController::class, 'update'])->name('admin.orderItem.update');
+Route::get('/ordersItem/edit/{id}', [OrderItemController::class, 'edit'])->name('admin.orderItem.edit');
+Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy'])->name('admin.orderItem.destroy');
+
+
 
 Route::get('/store', [StoreController::class, 'index']);
 Route::post('/store', [StoreController::class, 'store']);
@@ -97,11 +107,7 @@ Route::get('/store/{id}', [StoreController::class, 'show']);
 Route::put('/store/{id}', [StoreController::class, 'update']);
 Route::delete('/store/{id}', [StoreController::class, 'destroy']);
 
-Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
-Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
-Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
-Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
-Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
+
 // Route for the Admin dashboard
 Route::get('/dashboard', function () {
     return view('Admin.dashboard');

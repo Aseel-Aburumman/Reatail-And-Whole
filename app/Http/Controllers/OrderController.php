@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Store;
 use App\Models\User;
+use App\Models\Product;
 
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Models\PriceTier;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -38,7 +40,10 @@ class OrderController extends Controller
     {
         $stores = Store::getAllStores();
         $users = User::all();
-        return view('admin.order.create', compact('stores', 'users'));
+        $products = Product::getAllProducts();
+        $priceTiers = PriceTier::all();
+
+        return view('admin.order.create', compact('stores', 'users', 'products', 'priceTiers'));
     }
     public function store(OrderRequest $request)
     {

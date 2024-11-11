@@ -46,6 +46,8 @@
                                             <tr>
                                                 <th>Contributor</th>
                                                 <th>Quantity Contributed</th>
+                                                <th>Actions</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -53,6 +55,18 @@
                                                 <tr>
                                                     <td>{{ $contribution->retailer->name }}</td>
                                                     <td>{{ $contribution->quantity }}</td>
+                                                    <td>
+                                                        <a href="{{ route('admin.orderItem.edit', $contribution->id) }}"
+                                                            class="btn btn-warning btn-sm me-2">Edit</a>
+                                                        <form
+                                                            action="{{ route('admin.orderItem.destroy', $contribution->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Are you sure?')">Delete</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

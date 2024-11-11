@@ -8,7 +8,7 @@
     <div class="container mt-5 pt-5 pb-3"> <!-- Increased top margin and padding -->
         <div class="card shadow-sm rounded"> <!-- Card for structured layout -->
             <div class="card-header bg-secondary text-white">
-                <h2>User Details</h2>
+                <h2>Order Details</h2>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
@@ -46,6 +46,8 @@
                                             <tr>
                                                 <th>Contributor</th>
                                                 <th>Quantity Contributed</th>
+                                                <th>Actions</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -53,6 +55,18 @@
                                                 <tr>
                                                     <td><?php echo e($contribution->retailer->name); ?></td>
                                                     <td><?php echo e($contribution->quantity); ?></td>
+                                                    <td>
+                                                        <a href="<?php echo e(route('admin.orderItem.edit', $contribution->id)); ?>"
+                                                            class="btn btn-warning btn-sm me-2">Edit</a>
+                                                        <form
+                                                            action="<?php echo e(route('admin.orderItem.destroy', $contribution->id)); ?>"
+                                                            method="POST" style="display: inline;">
+                                                            <?php echo csrf_field(); ?>
+                                                            <?php echo method_field('DELETE'); ?>
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Are you sure?')">Delete</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
@@ -63,7 +77,7 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
 
-                <a href="<?php echo e(route('order.index')); ?>" class="btn btn-secondary mt-4">Back to User List</a>
+                <a href="<?php echo e(route('order.index')); ?>" class="btn btn-secondary mt-4">Back to Order List</a>
                 <!-- Extra space for button -->
             </div>
         </div>
