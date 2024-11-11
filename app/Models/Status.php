@@ -12,9 +12,24 @@ class Status extends Model
         'name'
     ];
 
-    
+
     public function OrderItem()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public static function createStatus($data)
+    {
+        return self::create($data);
+    }
+
+    public function updateStatus($data)
+    {
+        return $this->update($data);
+    }
+
+    public function deleteStatus()
+    {
+        return $this->delete();
     }
 }

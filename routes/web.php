@@ -11,7 +11,11 @@ use App\Http\Controllers\OrderContributionController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PriceTierController;
+use App\Http\Controllers\StatusController;
 
+
+<<<<<<< Updated upstream
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,8 @@ use App\Http\Controllers\AuthController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+=======
+>>>>>>> Stashed changes
 
 
 Route::get('/about', function () {
@@ -137,3 +143,17 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.view'
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+
+
+
+
+//admin dashboard
+
+    Route::resource('price_tiers', PriceTierController::class);
+    Route::resource('statuses', StatusController::class);
+
+
