@@ -24,4 +24,30 @@ class Store extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+
+    public static function getAllStores()
+    {
+        return self::all();
+    }
+
+    public static function createStore(array $data)
+    {
+        return self::create($data);
+    }
+
+    public function updateStore(array $data)
+    {
+        return $this->update($data);
+    }
+
+    public function deleteStore()
+    {
+        return $this->delete();
+    }
+
+    public static function findStoreById(int $id)
+    {
+        return self::find($id);
+    }
 }

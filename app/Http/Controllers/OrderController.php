@@ -22,7 +22,8 @@ class OrderController extends Controller
         $Order = Order::findOrderById($id);
 
         if ($Order) {
-            return  response()->json(new OrderResource($Order));
+            // return  response()->json(new OrderResource($Order));
+            return view('admin.order.show', compact('Order'));
         } else {
             return response()->json([
                 'message' => 'We could not find the Order.'
@@ -34,7 +35,8 @@ class OrderController extends Controller
     {
         $Order = Order::createOrder($request->validated());
         if ($Order) {
-            return response()->json(new OrderResource($Order));
+            // return response()->json(new OrderResource($Order));
+            return view('admin.order.store', compact('Order'));
         } else {
             return response()->json([
                 'message' => 'We could not create a new Order.'
@@ -42,6 +44,12 @@ class OrderController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $Order = Order::findOrderById($id);
+        
+        return view('admin.order.edit', compact('Order'));
+    }
 
     public function update(Request $request, $id)
     {
@@ -49,7 +57,8 @@ class OrderController extends Controller
 
         if ($Order) {
             $Order->updateOrder($request->validated());
-            return response()->json(new OrderResource($Order));
+            // return response()->json(new OrderResource($Order));
+            return view('admin.order.update', compact('Order'));
         } else {
             return response()->json([
                 'message' => 'We could not find the Order.'
