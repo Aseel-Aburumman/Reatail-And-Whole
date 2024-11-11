@@ -1,11 +1,19 @@
 <?php
+
 use App\Http\Controllers\ProductController;
+<<<<<<< HEAD
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+=======
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\OrderContributionController;
+>>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -19,9 +27,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 Route::get('/about', function () {
     return view('about');
 });
@@ -45,9 +51,6 @@ Route::get('/contact', function () {
 });
 Route::get('/elements', function () {
     return view('elements');
-});
-Route::get('/login', function () {
-    return view('login');
 });
 Route::get('/main', function () {
     return view('main');
@@ -100,8 +103,42 @@ Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('ad
 
 //     return redirect()->back()->with('error', 'Invalid credentials');
 // })->name('login');
+});
+
+
+
+Route::get('/orders', [OrderController::class, 'index']);
+Route::post('/orders', [OrderController::class, 'store']);
+Route::get('/orders/{id}', [OrderController::class, 'show']);
+Route::put('/orders/{id}', [OrderController::class, 'update']);
+Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
+
+Route::get('/ordersItem', [OrderItemController::class, 'index']);
+Route::post('/ordersItem', [OrderItemController::class, 'store']);
+Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
+Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
+Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
+
+Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
+Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
+Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
+Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
+Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
 //////////////////////////////////////////
 /////////////////////////
 /////////////////
 /////////
 /////
+//home,login and signup
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.view');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.view');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+

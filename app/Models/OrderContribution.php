@@ -27,4 +27,31 @@ class OrderContribution extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+
+    public static function getAllContribution()
+    {
+        return self::all();
+    }
+
+    public static function createContribution(array $data)
+    {
+        return self::create($data);
+    }
+
+    public function updateContribution(array $data)
+    {
+        return $this->update($data);
+    }
+
+    public function deleteContribution()
+    {
+        return $this->delete();
+    }
+
+    public static function findContributionById(int $id)
+    {
+        return self::find($id);
+    }
 }

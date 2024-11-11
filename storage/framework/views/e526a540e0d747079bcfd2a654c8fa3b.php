@@ -59,7 +59,7 @@
                                     <span class="flaticon-search"></span>
                                 </div>
                             </li>
-                            <li> <a href="<?php echo e(route ('login.view')); ?>"><span class="flaticon-user"></span></a></li>
+                            <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
                             <li><a href="cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
                         </ul>
                     </div>
@@ -73,4 +73,4 @@
     </div>
     <!-- Header End -->
 </header>
-<?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/layouts/Header.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\Reatail-And-Whole\resources\views/layouts/Header.blade.php ENDPATH**/ ?>
