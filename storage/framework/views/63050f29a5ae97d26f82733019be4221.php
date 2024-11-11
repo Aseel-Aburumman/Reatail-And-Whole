@@ -14,8 +14,8 @@
         <div class="col-md-4">
             <h3 class="text-center mb-4">Admin Login</h3>
             <div class="card shadow-sm p-4">
-                <form action="{{ route('login') }}" method="POST">
-                    @csrf
+                <form action="<?php echo e(route('login')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="form-group mb-3">
                         <label for="email" class="form-label">Email Address</label>
                         <input type="email" id="email" name="email" class="form-control" required>
@@ -28,14 +28,15 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>
-                @if (session('error'))
+                <?php if(session('error')): ?>
                     <div class="alert alert-danger mt-3">
-                        {{ session('error') }}
+                        <?php echo e(session('error')); ?>
+
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
             <p class="text-center mt-3">
-                <a href="{{ route('password.request') }}">Forgot Your Password?</a>
+                <a href="<?php echo e(route('password.request')); ?>">Forgot Your Password?</a>
             </p>
         </div>
     </div>
@@ -44,3 +45,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/Admin/Login.blade.php ENDPATH**/ ?>

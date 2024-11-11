@@ -2,18 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    use HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -27,8 +24,6 @@ class User extends Authenticatable
         'location',
         'password',
     ];
-
-
 
     public function store()
     {
@@ -63,4 +58,52 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Fetch users by a specific role.
+     *
+     * @param string $role
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getUsersByRole(string $role)
+    {
+        return self::role($role)->get();
+    }
+
+    public static function createUser(array $data)
+    {
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+        return self::create($data);
+    }
+
+
+    /**
+     * Update user details.
+     *
+     * @param array $data
+     * @return $this
+     */
+    public function updateUserDetails(array $data)
+    {
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        $this->update($data);
+        return $this;
+    }
+
+    /**
+     * Delete a user by ID.
+     *
+     * @param int $id
+     * @return bool|null
+     */
+    public static function deleteUserById(int $id)
+    {
+        $user = self::find($id);
+        return $user ? $user->delete() : false;
+    }
 }
