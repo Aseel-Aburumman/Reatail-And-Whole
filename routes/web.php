@@ -57,34 +57,34 @@ Route::get('/shop', function () {
     return view('shop');
 });
 
-Route::get('/dashboard', function () {
-    return view('Admin.dashboard');
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('Admin.dashboard');
+    });
+
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
+    Route::put('/orders/{id}', [OrderController::class, 'update']);
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
+
+    Route::get('/ordersItem', [OrderItemController::class, 'index']);
+    Route::post('/ordersItem', [OrderItemController::class, 'store']);
+    Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
+    Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
+    Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
+
+    Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
+    Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
+    Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
+    Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
+    Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
 });
 
-
-
-Route::get('/orders', [OrderController::class, 'index']);
-Route::post('/orders', [OrderController::class, 'store']);
-Route::get('/orders/{id}', [OrderController::class, 'show']);
-Route::put('/orders/{id}', [OrderController::class, 'update']);
-Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
-
-Route::get('/ordersItem', [OrderItemController::class, 'index']);
-Route::post('/ordersItem', [OrderItemController::class, 'store']);
-Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
-Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
-Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
-
-Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
-Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
-Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
-Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
-Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
-//////////////////////////////////////////
-/////////////////////////
-/////////////////
-/////////
-/////
+Route::get('/', function () {
+    return view('index');
+})->name('home');
 //home,login and signup
 Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.view');
 Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -93,8 +93,3 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.view'
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::get('/', function () {
-    return view('index');
-})->name('home');
-
