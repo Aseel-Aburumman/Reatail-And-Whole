@@ -52,7 +52,7 @@ class AuthController extends Controller
 
 
             if ($user->hasRole('admin')) {
-                return redirect()->route('admin.dashboard')->with([
+                return redirect()->route('dashboard')->with([
                     'success' => 'Admin login successful',
                     'user' => new UserResource($user)
                 ]);

@@ -63,35 +63,34 @@ Route::get('/shop', function () {
 });
 
 
-Route::middleware(['role:admin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('Admin.dashboard');
-    });
+// Route::middleware(['Role:admin'])->group(function () {
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// });
 
-    Route::get('/orders', [OrderController::class, 'index']);
-    Route::post('/orders', [OrderController::class, 'store']);
-    Route::get('/orders/{id}', [OrderController::class, 'show']);
-    Route::put('/orders/{id}', [OrderController::class, 'update']);
-    Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
+Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+Route::post('/orders', [OrderController::class, 'store']);
+Route::get('/orders/{id}', [OrderController::class, 'show']);
+Route::put('/orders/{id}', [OrderController::class, 'update']);
+Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 
-    Route::get('/ordersItem', [OrderItemController::class, 'index']);
-    Route::post('/ordersItem', [OrderItemController::class, 'store']);
-    Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
-    Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
-    Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
+Route::get('/ordersItem', [OrderItemController::class, 'index']);
+Route::post('/ordersItem', [OrderItemController::class, 'store']);
+Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
+Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
+Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
 
-    Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
-    Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
-    Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
-    Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
-    Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
+Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
+Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
+Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
+Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
+Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
 // Route for the Admin dashboard
 Route::get('/dashboard', function () {
     return view('Admin.dashboard');
 })->name('dashboard');
 
 
-// Route for listing users
 Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
 // Route for showing the form to create a new user
@@ -123,11 +122,13 @@ Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('ad
 
 //     return redirect()->back()->with('error', 'Invalid credentials');
 // })->name('login');
-});
+// });
 
 Route::get('/', function () {
     return view('index');
 })->name('home');
+
+
 //home,login and signup
 Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.view');
 Route::post('register', [AuthController::class, 'register'])->name('register');

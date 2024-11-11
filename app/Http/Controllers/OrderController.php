@@ -13,7 +13,8 @@ class OrderController extends Controller
     public function index()
     {
         $Orders = Order::getAllOrders();
-        return response()->json(OrderResource::collection($Orders));
+        // return response()->json(OrderResource::collection($Orders));
+        return view('admin.order.index', compact('Orders'));
     }
 
     public function show(string $id)
