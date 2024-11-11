@@ -11,6 +11,9 @@ use App\Http\Controllers\OrderContributionController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PriceTierController;
+use App\Http\Controllers\StatusController;
+
 
 
 /*
@@ -157,3 +160,17 @@ Route::prefix('dashboard/products')->name('admin.products.')->group(function () 
 /////////////////
 /////////
 /////
+
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+
+
+
+
+//admin dashboard
+
+    Route::resource('price_tiers', PriceTierController::class);
+    Route::resource('statuses', StatusController::class);
+
+
