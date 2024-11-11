@@ -1,9 +1,9 @@
 <!-- resources/views/admin/users/show.blade.php -->
 
-@extends('admin.layout.master')
-@section('main_content')
-    @include('admin.layout.nav')
-    @include('admin.layout.sidebar')
+
+<?php $__env->startSection('main_content'); ?>
+    <?php echo $__env->make('admin.layout.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('admin.layout.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="container mt-5 pt-5 pb-3"> <!-- Increased top margin and padding -->
         <div class="card shadow-sm rounded"> <!-- Card for structured layout -->
@@ -15,33 +15,35 @@
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td>{{ $Order->id }}</td>
+                            <td><?php echo e($Order->id); ?></td>
                         </tr>
                         <tr>
                             <th>Store Name</th>
-                            <td>{{ $Order->store->name }}</td>
+                            <td><?php echo e($Order->store->name); ?></td>
                         </tr>
                         <tr>
                             <th>Order Made By</th>
-                            <td>{{ $Order->retailer->name }}</td>
+                            <td><?php echo e($Order->retailer->name); ?></td>
                         </tr>
                         <tr>
                             <th>Deadline</th>
-                            <td>{{ $Order->deadline }}</td>
+                            <td><?php echo e($Order->deadline); ?></td>
                         </tr>
                         <tr>
                             <th>Created At</th>
-                            <td>{{ $Order->created_at->format('Y-m-d H:i:s') }}</td>
+                            <td><?php echo e($Order->created_at->format('Y-m-d H:i:s')); ?></td>
                         </tr>
                         <tr>
                             <th>Updated At</th>
-                            <td>{{ $Order->updated_at->format('Y-m-d H:i:s') }}</td>
+                            <td><?php echo e($Order->updated_at->format('Y-m-d H:i:s')); ?></td>
                         </tr>
                     </tbody>
                 </table>
-                <a href="{{ route('order.index') }}" class="btn btn-secondary mt-4">Back to User List</a>
+                <a href="<?php echo e(route('order.index')); ?>" class="btn btn-secondary mt-4">Back to User List</a>
                 <!-- Extra space for button -->
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Reatail-And-Whole\resources\views/admin/order/show.blade.php ENDPATH**/ ?>
