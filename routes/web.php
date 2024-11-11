@@ -2,6 +2,7 @@
 use App\Http\Controllers\ProductController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 Route::get('/about', function () {
     return view('about');
 });
@@ -41,9 +40,6 @@ Route::get('/contact', function () {
 Route::get('/elements', function () {
     return view('elements');
 });
-Route::get('/login', function () {
-    return view('login');
-});
 Route::get('/main', function () {
     return view('main');
 });
@@ -60,8 +56,19 @@ Route::get('/shop', function () {
 Route::get('/dashboard', function () {
     return view('Admin.dashboard');
 });
-//////////////////////////////////////////
-/////////////////////////
-/////////////////
-/////////
-/////
+
+
+
+//home,login and signup
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register.view');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.view');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+

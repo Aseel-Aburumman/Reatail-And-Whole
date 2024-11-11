@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable
 {
@@ -63,4 +65,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function registerUser($data)
+{
+    $data['password'] = bcrypt($data['password']); 
+    return self::create($data);
+}
+public static function loginUser($data)
+{
+    $user = self::where('email', $data['email'])->first();
+
+    if ($user && Hash::check($data['password'], $user->password)) {
+        return $user;
+    }
+
+    return null;
+}
+
 }

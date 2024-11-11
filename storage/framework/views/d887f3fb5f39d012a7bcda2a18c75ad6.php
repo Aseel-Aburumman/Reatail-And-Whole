@@ -1,5 +1,4 @@
-@extends('layouts.main')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <main>
         <!-- Hero Area Start-->
         <div class="slider-area ">
@@ -27,7 +26,7 @@
                                 <h2>New to our Shop?</h2>
                                 <p>There are advances being made in science and technology
                                     everyday, and a good example of this is the</p>
-                                <a href="{{ route('register.view') }}" class="btn_3">Create an Account</a>
+                                <a href="<?php echo e(route('register.view')); ?>" class="btn_3">Create an Account</a>
                             </div>
                         </div>
                     </div>
@@ -38,32 +37,48 @@
                                     Please Sign in now</h3>
 
                                 <!-- عرض رسائل الخطأ إن وجدت -->
-                                @if(session('success'))
+                                <?php if(session('success')): ?>
                                     <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                                @if($errors->has('login_error'))
-                                    <div class="alert alert-danger">
-                                        {{ $errors->first('login_error') }}
-                                    </div>
-                                @endif
+                                        <?php echo e(session('success')); ?>
 
-                                <form class="row contact_form" action="{{ route('login') }}" method="post" novalidate="novalidate">
-                                    @csrf
+                                    </div>
+                                <?php endif; ?>
+                                <?php if($errors->has('login_error')): ?>
+                                    <div class="alert alert-danger">
+                                        <?php echo e($errors->first('login_error')); ?>
+
+                                    </div>
+                                <?php endif; ?>
+
+                                <form class="row contact_form" action="<?php echo e(route('login')); ?>" method="post" novalidate="novalidate">
+                                    <?php echo csrf_field(); ?>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                                        <input type="email" class="form-control" id="email" name="email" value="<?php echo e(old('email')); ?>"
                                             placeholder="Email">
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="password" class="form-control" id="password" name="password" value=""
                                             placeholder="Password">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <div class="creat_account d-flex align-items-center">
@@ -84,4 +99,6 @@
         </section>
         <!--================login_part end =================-->
     </main>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/login.blade.php ENDPATH**/ ?>
