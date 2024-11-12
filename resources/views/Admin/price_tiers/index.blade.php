@@ -8,7 +8,6 @@
 <div class="container mt-5">
     <h1>Price Tiers</h1>
 
-    <!-- إضافة زر "إضافة مستوى سعر جديد" مع بعض التنسيقات -->
     <div class="mt-5 mb-3">
         <a href="{{ route('price_tiers.create') }}" class="btn btn-primary">Add New Price Tier</a>
     </div>

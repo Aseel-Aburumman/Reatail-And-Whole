@@ -45,6 +45,16 @@
             <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i>
                     <span>Setting</span></a></li>
 
+             <li class=""><a class="nav-link" href="<?php echo e(route('price_tiers.index')); ?>"><i class="fas fa-tags"></i>
+                    <span>price tiers</span></a></li>
+
+                    <li class=""><a class="nav-link" href="<?php echo e(route('statuses.index')); ?>"><i class="fas fa-check-circle"></i>
+                        <span>Statuses</span></a></li>
+
+
+                    <li class=""><a class="nav-link" href="<?php echo e(route('stores.index')); ?>"><i class="fas fa-warehouse"></i></i>
+                        <span>stores</span></a></li>
+
             <li class=""><a class="nav-link" href="form.html"><i class="fas fa-hand-point-right"></i>
                     <span>Form</span></a></li>
 
