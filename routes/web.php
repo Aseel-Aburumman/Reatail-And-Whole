@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderContributionController;
 use App\Http\Controllers\StoreController;
 
@@ -88,16 +87,13 @@ Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.
 Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
 Route::post('/OrderContribution', [OrderContributionController::class, 'store'])->name('admin.OrderContribution.store');
 Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show'])->name('admin.OrderContribution.show');
+Route::get('/OrderContribution/create/{order_id}', [OrderContributionController::class, 'create'])->name('admin.OrderContribution.create');
+
 Route::get('/OrderContribution/edit/{id}', [OrderContributionController::class, 'edit'])->name('admin.OrderContribution.edit');
 Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update'])->name('admin.OrderContribution.update');
 Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy'])->name('admin.OrderContribution.destroy');
 
-Route::get('/ordersItem', [OrderItemController::class, 'index']);
-Route::post('/ordersItem', [OrderItemController::class, 'store']);
-Route::get('/ordersItem/{id}', [OrderItemController::class, 'show'])->name('admin.orderItem.show');
-Route::put('/ordersItem/{id}', [OrderItemController::class, 'update'])->name('admin.orderItem.update');
-Route::get('/ordersItem/edit/{id}', [OrderItemController::class, 'edit'])->name('admin.orderItem.edit');
-Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy'])->name('admin.orderItem.destroy');
+
 
 
 

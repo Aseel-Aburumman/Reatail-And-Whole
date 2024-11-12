@@ -15,7 +15,7 @@
                     @csrf
                     @method('PUT')
 
-                    <input type="hidden" name="order_item_id" value="12345">
+                    <input type="hidden" name="order_id" value="{{ $Ordercontribution->order_id }}">
 
 
                     <div class="form-group mb-3">

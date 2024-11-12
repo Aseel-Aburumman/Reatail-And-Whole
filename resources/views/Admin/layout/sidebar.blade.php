@@ -23,17 +23,10 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown active">
-                <a href="{{ route('order.index') }}" class="nav-link has-dropdown"><i
-                        class="fas fa-hand-point-right"></i><span>Order
-                        Manegment Center</span></a>
-                <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href="{{ route('order.index') }}"><i
-                                class="fas fa-angle-right"></i> Orders</a>
-                    </li>
-                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a>
-                    </li>
-                </ul>
+
+                            <li class=""><a class="nav-link" href="{{ route('order.index') }}"><i class="fas fa-hand-point-right"></i> <span>Order
+                        Manegment Center</span></a></li>
+
             <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
             <li class="">
                 <a class="nav-link" href="{{ route('admin.products.index') }}">

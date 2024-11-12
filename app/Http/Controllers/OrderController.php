@@ -63,9 +63,12 @@ class OrderController extends Controller
     public function edit($id)
     {
         $Order = Order::findOrderById($id);
+        $products = Product::getAllProducts();
+        $priceTiers = PriceTier::all();
         $stores = Store::getAllStores();
+
         $users = User::all();
-        return view('admin.order.edit', compact('Order', 'stores', 'users'));
+        return view('admin.order.edit', compact('Order', 'stores','users', 'products', 'priceTiers'));
     }
 
     public function update(OrderRequest $request, $id)

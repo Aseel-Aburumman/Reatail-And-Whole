@@ -51,7 +51,35 @@
                             value="<?php echo e($Order->deadline); ?>" required>
                     </div>
 
+<div class="form-group mb-3">
+                        <label for="product_id">Product Name</label>
+                        <select class="form-control" id="product_id" name="product_id" required>
+                            <option value="">Select a Store</option>
+                            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($product->id); ?>"
+                                    <?php echo e(isset($Order) && $Order->product_id == $product->id ? 'selected' : ''); ?>>
+                                    <?php echo e($product->name); ?>
 
+                                </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="price_tier_id">Price Tier Id Name</label>
+                        <select class="form-control" id="price_tier_id" name="price_tier_id" required>
+                            <option value="">Select a Price Tier</option>
+                            <?php $__currentLoopData = $priceTiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $priceTier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($priceTier->id); ?>"
+                                    <?php echo e(isset($Order) && $Order->price_tier_id == $priceTier->id ? 'selected' : ''); ?>>
+                                    <?php echo e($priceTier->name); ?>
+
+                                </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                    </div>
+
+                    
 
                     <div class="d-flex justify-content-between">
                         <a href="<?php echo e(route('order.index')); ?>" class="btn btn-secondary">Back to Order List</a>

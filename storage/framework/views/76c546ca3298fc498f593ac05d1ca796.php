@@ -31,7 +31,10 @@
                 </table>
 
                 <h4 class="mt-4">Order Items</h4>
-
+                    <!-- Create Contribution Button -->
+                    <a href="<?php echo e(route('admin.OrderContribution.create', ['order_id' => $Order->id])); ?>" class="btn btn-primary">
+                        Create New Contribution
+                    </a>
                 <!-- Loop through each order item -->
                 <div class="order-items-list">
 
