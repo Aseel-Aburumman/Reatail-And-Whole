@@ -39,7 +39,10 @@ class Product extends Model
     {
         return self::create($data);
     }
-
+    public static function findById(int $id)
+    {
+        return self::find($id);
+    }
     public function updateProduct(array $data)
     {
         return $this->update($data);

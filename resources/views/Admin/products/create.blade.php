@@ -1,51 +1,48 @@
-<!-- resources/views/products/create.blade.php -->
+<!-- resources/views/admin/users/create.blade.php -->
+
 @extends('admin.layout.master')
 @section('main_content')
 @include('admin.layout.nav')
 @include('admin.layout.sidebar')
 
-<div class="container mt-5">
-    <h1>Add New Product</h1>
-
+<div class="container mt-5 pt-5 pb-3">
     <div class="card shadow-sm rounded">
-        <div class="card-header bg-primary text-white">
-            <h2>Product Details</h2>
+        <div class="card-header bg-secondary text-white">
+            <h2>Add New User</h2>
         </div>
-
         <div class="card-body">
-            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.product.store') }}" method="POST">
                 @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" required>
+
+                <div class="form-group mb-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" step="0.01" name="price" class="form-control" id="price" required>
+                <div class="form-group mb-3">
+                    <label for="price">Price</label>
+                    <input type="price" class="form-control" id="price" name="price" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea name="description" class="form-control" id="description"></textarea>
+                <div class="form-group mb-3">
+                    <label for="Description">Description</label>
+                    <input type="text" class="form-control" id="Description" name="Description">
                 </div>
 
-                <div class="mb-3">
-                    <label for="minimumquantities" class="form-label">Minimum Quantities</label>
-                    <input type="number" name="minimumquantities" class="form-control" id="minimumquantities" required>
+                <div class="form-group mb-3">
+                    <label for="Minimum Quantities">Minimum Quantities</label>
+                    <input type="text" class="form-control" id="Minimum Quantities" name="Minimum Quantities">
                 </div>
 
-                <div class="mb-3">
-                    <label for="store_id" class="form-label">Store ID</label>
-                    <input type="number" name="store_id" class="form-control" id="store_id" required>
+                <div class="form-group mb-3">
+                    <label for="Store ID">Store ID</label>
+                    <input type="Store ID" class="form-control" id="Store ID" name="Store ID" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="file" name="image" class="form-control" id="image">
+                <div class="d-flex justify-content-between">
+                    <a href="{{ route('admin.product.index') }}" class="btn btn-secondary">Back to product List</a>
+                    <button type="submit" class="btn btn-primary">Create product</button>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Save Product</button>
             </form>
         </div>
     </div>
