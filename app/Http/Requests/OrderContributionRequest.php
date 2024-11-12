@@ -14,7 +14,7 @@ class OrderContributionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'order_item_id' => ['required', 'exists:order_items,id'],
+            'order_id' => ['required', 'exists:orders,id'],
             'retailer_id' => ['required', 'exists:users,id'],
             'quantity' => ['required', 'integer', 'min:1'],
         ];

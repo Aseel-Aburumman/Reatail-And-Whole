@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderContribution;
+use App\Models\OrderItem;
+use App\Models\Order;
+
+
 use App\Http\Requests\OrderContributionRequest;
 use App\Http\Resources\OrderContributionResource;
 use Illuminate\Http\Request;
@@ -15,13 +19,16 @@ class OrderContributionController extends Controller
         return response()->json(OrderContributionResource::collection($contributions));
     }
 
+
+
     public function show($id)
     {
-        $contribution = OrderContribution::findContributionById($id);
+        $Order = Order::findOrderById($id);
+        $contribution = OrderContribution::where('order_id', $id);
         if ($contribution) {
-            return response()->json(new OrderContributionResource($contribution));
+            return view('admin.orderDetail.show', compact('contribution', 'Order'));
         } else {
-            return response()->json(['message' => 'Order contribution not found.'], 404);
+            return response()->json(['message' => 'Order item not found.'], 404);
         }
     }
 
@@ -36,7 +43,9 @@ class OrderContributionController extends Controller
         $contribution = OrderContribution::findContributionById($id);
         if ($contribution) {
             $contribution->updateContribution($request->validated());
-            return response()->json(new OrderContributionResource($contribution));
+            return redirect()->route('order.index')->with([
+                'success' => 'Order updated successful',
+            ]);
         } else {
             return response()->json(['message' => 'Order contribution not found.'], 404);
         }

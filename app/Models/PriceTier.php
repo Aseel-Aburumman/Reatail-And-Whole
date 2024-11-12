@@ -19,4 +19,18 @@ class PriceTier extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+    public static function createPriceTier($data)
+    {
+        return self::create($data);
+    }
+
+    public function updatePriceTier($data)
+    {
+        return $this->update($data);
+    }
+
+    public function deletePriceTier()
+    {
+        return $this->delete();
+    }
 }

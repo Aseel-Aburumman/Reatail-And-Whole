@@ -13,7 +13,10 @@ class Order extends Model
         'deadline',
         'store_id',
         'initiator_retailer_id',
-
+        'total_quantity',
+        'product_id',
+        'price_tier_id',
+        'status_id',
     ];
 
     public function store()
@@ -24,10 +27,24 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'initiator_retailer_id');
     }
-    public function orderItems()
+    public function status()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->belongsTo(Status::class);
     }
+    public function priceTier()
+    {
+        return $this->belongsTo(Pricetier::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+    public function contributions()
+    {
+        return $this->hasMany(OrderContribution::class);
+    }
+
+
 
 
     public static function getAllOrders()

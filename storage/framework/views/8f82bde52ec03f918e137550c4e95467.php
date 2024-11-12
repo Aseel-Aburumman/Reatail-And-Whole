@@ -9,16 +9,21 @@
 
         <ul class="sidebar-menu">
 
-            <li class="active"><a class="nav-link" href="index.html"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+            <li class="active"><a class="nav-link" href="index.html"><i class="fas fa-hand-point-right"></i>
+                    <span>Dashboard</span></a></li>
 
             <li class="nav-item dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown
+                        Items</span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 1</a></li>
-                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a></li>
+                    <li class="active"><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 1</a>
+                    </li>
+                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a>
+                    </li>
                 </ul>
             </li>
 
+<<<<<<< HEAD
             <!-- Users Section -->
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Users</span></a>
@@ -28,13 +33,38 @@
                 </ul>
             </li>
 
+=======
+            <li class="nav-item dropdown active">
+                <a href="<?php echo e(route('order.index')); ?>" class="nav-link has-dropdown"><i
+                        class="fas fa-hand-point-right"></i><span>Order
+                        Manegment Center</span></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a class="nav-link" href="<?php echo e(route('order.index')); ?>"><i
+                                class="fas fa-angle-right"></i> Orders</a>
+                    </li>
+                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a>
+                    </li>
+                </ul>
+>>>>>>> 0457ca1a6fd5f849ba4ec0cc5b1e34daf9ce1b3b
             <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
+            <li class="">
+                <a class="nav-link" href="<?php echo e(route('admin.products.index')); ?>">
+                    <i class="fas fa-hand-point-right"></i>
+                    <span>Product Manage</span>
+                </a>
+            </li>
 
-            <li class=""><a class="nav-link" href="form.html"><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
+            <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i>
+                    <span>Setting</span></a></li>
 
-            <li class=""><a class="nav-link" href="table.html"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
+            <li class=""><a class="nav-link" href="form.html"><i class="fas fa-hand-point-right"></i>
+                    <span>Form</span></a></li>
 
-            <li class=""><a class="nav-link" href="invoice.html"><i class="fas fa-hand-point-right"></i> <span>Invoice</span></a></li>
+            <li class=""><a class="nav-link" href="table.html"><i class="fas fa-hand-point-right"></i>
+                    <span>Table</span></a></li>
+
+            <li class=""><a class="nav-link" href="invoice.html"><i class="fas fa-hand-point-right"></i>
+                    <span>Invoice</span></a></li>
 
         </ul>
     </aside>
