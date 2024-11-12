@@ -40,20 +40,38 @@ class UserController extends Controller
     //     return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     // }
 
+    // public function store(UserStoreRequest $request)
+    // {
+    //     try {
+    //         // Create the user
+    //         $user = User::createUser($request->validated());
+
+
+    //         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+    //     } catch (\Exception $e) {
+
+
+    //         return redirect()->back()->with('error', 'Failed to create user.');
+    //     }
+    // }
+
     public function store(UserStoreRequest $request)
-    {
-        try {
-            // Create the user
-            $user = User::createUser($request->validated());
+{
+    try {
+        // Create the user
+        $user = User::create($request->validated());
 
-
-            return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
-        } catch (\Exception $e) {
-
-
-            return redirect()->back()->with('error', 'Failed to create user.');
+        // Assign a role to the user
+        if ($request->has('role')) {
+            $user->assignRole($request->input('role'));
         }
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Failed to create user.');
     }
+}
+
 
     /**
      * Display the specified user.
@@ -76,16 +94,32 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      */
+    // public function update(UserUpdateRequest $request, $id)
+    // {
+    //     $user = User::findOrFail($id);
+
+    //     // Update user details without hashing the password
+    //     $user->update($request->validated());
+
+    //     // Redirect to the user list with a success message
+    //     return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+    // }
+
+
     public function update(UserUpdateRequest $request, $id)
-    {
-        $user = User::findOrFail($id);
+{
+    $user = User::findOrFail($id);
 
-        // Update user details without hashing the password
-        $user->update($request->validated());
+    // Update user details
+    $user->update($request->validated());
 
-        // Redirect to the user list with a success message
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+    // Update the user's role
+    if ($request->has('role')) {
+        $user->syncRoles([$request->input('role')]);
     }
+
+    return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+}
 
     /**
      * Remove the specified user from storage.

@@ -1,16 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-<<<<<<< HEAD
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-=======
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderContributionController;
->>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -103,7 +100,8 @@ Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('ad
 
 //     return redirect()->back()->with('error', 'Invalid credentials');
 // })->name('login');
-});
+
+// });
 
 
 
@@ -142,3 +140,10 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    // Ensure that all routes are properly closed within the group
+});
