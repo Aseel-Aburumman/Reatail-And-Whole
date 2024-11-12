@@ -8,7 +8,7 @@
 
     <!-- Add extra spacing above the "Add New Status" button -->
     <div class="mt-5 mb-3">
-        <a href="{{ route('admin.statuses.create') }}" class="btn btn-primary">Add New Status</a>
+        <a href="{{ route('statuses.create') }}" class="btn btn-primary">Add New Status</a>
     </div>
 
     <div class="card shadow-sm rounded">
@@ -31,8 +31,9 @@
                         <td>{{ $status->id }}</td>
                         <td>{{ $status->name }}</td>
                         <td>
-                            <a href="{{ route('admin.statuses.edit', $status->id) }}" class="btn btn-warning btn-sm me-2">Edit</a>
-                            <form action="{{ route('admin.statuses.destroy', $status->id) }}" method="POST" style="display: inline;">
+                            <a href="{{ route('statuses.show', $status->id) }}" class="btn btn-info btn-sm me-2">View</a>
+                            <a href="{{ route('statuses.edit', $status->id) }}" class="btn btn-warning btn-sm me-2">Edit</a>
+                            <form action="{{ route('statuses.destroy', $status->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>

@@ -34,6 +34,12 @@
                     <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a>
                     </li>
                 </ul>
+            <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
+            <li class="">
+                <a class="nav-link" href="<?php echo e(route('admin.products.index')); ?>">
+                    <i class="fas fa-hand-point-right"></i>
+                    <span>Product Manage</span>
+                </a>
             </li>
 
             <li class=""><a class="nav-link" href="setting.html"><i class="fas fa-hand-point-right"></i>

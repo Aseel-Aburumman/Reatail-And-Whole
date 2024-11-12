@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\OrderContributionController;
+use App\Http\Controllers\StoreController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -33,33 +34,7 @@ Route::resource('products', ProductController::class);
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/blog-details', function () {
-    return view('blog-details');
-});
-Route::get('/blog', function () {
-    return view('blog');
-});
-Route::get('/cart', function () {
-    return view('cart');
-});
-Route::get('/checkout', function () {
-    return view('checkout');
-});
-Route::get('/confirmation', function () {
-    return view('confirmation');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-Route::get('/elements', function () {
-    return view('elements');
-});
-Route::get('/main', function () {
-    return view('main');
-});
+
 Route::get('/product_details', function () {
     return view('product_details');
 });
@@ -77,22 +52,39 @@ Route::get('/shop', function () {
 // });
 
 Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
-Route::post('/orders', [OrderController::class, 'store']);
-Route::get('/orders/{id}', [OrderController::class, 'show']);
-Route::put('/orders/{id}', [OrderController::class, 'update']);
-Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
+Route::get('/orders/create', [OrderController::class, 'create'])->name('admin.order.create');
+Route::post('/orders', [OrderController::class, 'store'])->name('admin.order.store');
+Route::get('/orders/{id}', [OrderController::class, 'show'])->name('admin.order.show');
+Route::put('/orders/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy');
+
+Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
+Route::post('/OrderContribution', [OrderContributionController::class, 'store'])->name('admin.OrderContribution.store');
+Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show'])->name('admin.OrderContribution.show');
+Route::get('/OrderContribution/edit/{id}', [OrderContributionController::class, 'edit'])->name('admin.OrderContribution.edit');
+Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update'])->name('admin.OrderContribution.update');
+Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy'])->name('admin.OrderContribution.destroy');
 
 Route::get('/ordersItem', [OrderItemController::class, 'index']);
 Route::post('/ordersItem', [OrderItemController::class, 'store']);
-Route::get('/ordersItem/{id}', [OrderItemController::class, 'show']);
-Route::put('/ordersItem/{id}', [OrderItemController::class, 'update']);
-Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy']);
+Route::get('/ordersItem/{id}', [OrderItemController::class, 'show'])->name('admin.orderItem.show');
+Route::put('/ordersItem/{id}', [OrderItemController::class, 'update'])->name('admin.orderItem.update');
+Route::get('/ordersItem/edit/{id}', [OrderItemController::class, 'edit'])->name('admin.orderItem.edit');
+Route::delete('/ordersItem/{id}', [OrderItemController::class, 'destroy'])->name('admin.orderItem.destroy');
 
-Route::get('/OrderContribution', [OrderContributionController::class, 'index']);
-Route::post('/OrderContribution', [OrderContributionController::class, 'store']);
-Route::get('/OrderContribution/{id}', [OrderContributionController::class, 'show']);
-Route::put('/OrderContribution/{id}', [OrderContributionController::class, 'update']);
-Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'destroy']);
+
+
+Route::get('/store', [StoreController::class, 'index'])->name('stores.index');
+Route::get('/store/create', [StoreController::class, 'create'])->name('store.create'); // إضافة مسار "create"
+Route::post('/store', [StoreController::class, 'store'])->name('store.store');
+Route::get('/store/{id}', [StoreController::class, 'show'])->name('store.show');
+Route::get('/store/{id}/edit', [StoreController::class, 'edit'])->name('store.edit'); // إضافة مسار "edit"
+Route::put('/store/{id}', [StoreController::class, 'update'])->name('store.update');
+Route::delete('/store/{id}', [StoreController::class, 'destroy'])->name('store.destroy');
+
+
+
 // Route for the Admin dashboard
 Route::get('/dashboard', function () {
     return view('Admin.dashboard');
@@ -130,6 +122,8 @@ Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('ad
 
 //     return redirect()->back()->with('error', 'Invalid credentials');
 // })->name('login');
+
+// });
 // });
 
 Route::get('/', function () {
@@ -167,10 +161,13 @@ Route::get('/', function () {
 
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    // Ensure that all routes are properly closed within the group
+});
 
 //admin dashboard
 
-    Route::resource('price_tiers', PriceTierController::class);
-    Route::resource('statuses', StatusController::class);
-
-
+Route::resource('price_tiers', PriceTierController::class);
+Route::resource('statuses', StatusController::class);

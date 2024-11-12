@@ -1,4 +1,48 @@
 <?php $__env->startSection('content'); ?>
+<<<<<<< HEAD
+<section class="py-5">
+    <div class="container-fluid">
+
+      <div class="bg-secondary py-5 my-5 rounded-5" style="background: url('images/bg-leaves-img-pattern.png') no-repeat;">
+        <div class="container my-5">
+          <div class="row">
+            <div class="col-md-6 p-5">
+              <div class="section-header">
+                <h2 class="section-title display-4">Get <span class="text-primary">25% Discount</span> on your first purchase</h2>
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictumst amet, metus, sit massa posuere maecenas. At tellus ut nunc amet vel egestas.</p>
+            </div>
+            <div class="col-md-6 p-5">
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text"
+                    class="form-control form-control-lg" name="name" id="name" placeholder="Name">
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Email</label>
+                  <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="abc@mail.com">
+                </div>
+                <div class="form-check form-check-inline mb-3">
+                  <label class="form-check-label" for="subscribe">
+                  <input class="form-check-input" type="checkbox" id="subscribe" value="subscribe">
+                  Subscribe to the newsletter</label>
+                </div>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-dark btn-lg">Submit</button>
+                </div>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+=======
     <main>
         <!-- Hero Area Start-->
         <div class="slider-area ">
@@ -15,10 +59,7 @@
             </div>
         </div>
         <!-- Hero Area End-->
-<<<<<<< HEAD
-=======
 
->>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
         <!--================login_part Area =================-->
         <section class="login_part section_padding ">
             <div class="container">
@@ -29,25 +70,13 @@
                                 <h2>New to our Shop?</h2>
                                 <p>There are advances being made in science and technology
                                     everyday, and a good example of this is the</p>
-<<<<<<< HEAD
-                                <a href="#" class="btn_3">Create an Account</a>
-=======
                                 <a href="<?php echo e(route('register.view')); ?>" class="btn_3">Create an Account</a>
->>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="login_part_form">
                             <div class="login_part_form_iner">
-<<<<<<< HEAD
-                                <h3>Welcome Back ! <br>
-                                    Please Sign in now</h3>
-                                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                                    <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="name" name="name" value=""
-                                            placeholder="Username">
-=======
                                 <h3>Welcome Back! <br>
                                     Please Sign in now</h3>
 
@@ -80,23 +109,10 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
->>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="password" class="form-control" id="password" name="password" value=""
                                             placeholder="Password">
-<<<<<<< HEAD
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <div class="creat_account d-flex align-items-center">
-                                            <input type="checkbox" id="f-option" name="selector">
-                                            <label for="f-option">Remember me</label>
-                                        </div>
-                                        <button type="submit" value="submit" class="btn_3">
-                                            log in
-                                        </button>
-                                        <a class="lost_pass" href="#">forget password?</a>
-=======
                                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -117,7 +133,6 @@ unset($__errorArgs, $__bag); ?>
                                             Log in
                                         </button>
                                         <a class="lost_pass" href="#">Forget password?</a>
->>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
                                     </div>
                                 </form>
                             </div>
@@ -128,10 +143,7 @@ unset($__errorArgs, $__bag); ?>
         </section>
         <!--================login_part end =================-->
     </main>
-<<<<<<< HEAD
-   <?php $__env->stopSection(); ?>
-=======
+>>>>>>> c6cc5dcf2b10fb2bc1e9731b84be9dad9ee23e58
 <?php $__env->stopSection(); ?>
->>>>>>> 669436328a2682e48429ab7cffce9fec6905b89e
 
 <?php echo $__env->make('layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/login.blade.php ENDPATH**/ ?>

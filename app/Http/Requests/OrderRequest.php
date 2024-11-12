@@ -26,6 +26,10 @@ class OrderRequest extends FormRequest
             'deadline' => ['required', 'date'],
             'store_id' => ['required', 'exists:stores,id', 'integer'],
             'initiator_retailer_id' => ['required', 'exists:users,id', 'integer'],
+            'total_quantity' => ['required', 'integer', 'min:1'],
+            'product_id' => ['required', 'exists:products,id'],
+            'price_tier_id' => ['required', 'exists:price_tiers,id'],
+            'status_id' => ['required', 'exists:statuses,id'],
         ];
     }
 }
