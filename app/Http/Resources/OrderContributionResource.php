@@ -11,7 +11,7 @@ class OrderContributionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'order_item_id' => $this->orderItem->id,
+            'order_id' => $this->order_id,
             'quantity' => $this->quantity,
             'retailer' => [
                 'id' => $this->retailer->id,

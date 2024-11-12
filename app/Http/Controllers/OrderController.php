@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Store;
+use App\Models\User;
+use App\Models\Product;
+
 use App\Http\Requests\OrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Models\PriceTier;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -31,12 +36,22 @@ class OrderController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function create()
+    {
+        $stores = Store::getAllStores();
+        $users = User::all();
+        $products = Product::getAllProducts();
+        $priceTiers = PriceTier::all();
+
+        return view('admin.order.create', compact('stores', 'users', 'products', 'priceTiers'));
+    }
+    public function store(OrderRequest $request)
     {
         $Order = Order::createOrder($request->validated());
         if ($Order) {
-            // return response()->json(new OrderResource($Order));
-            return view('admin.order.store', compact('Order'));
+            return redirect()->route('order.index')->with([
+                'success' => 'Order create successful',
+            ]);
         } else {
             return response()->json([
                 'message' => 'We could not create a new Order.'
@@ -44,21 +59,25 @@ class OrderController extends Controller
         }
     }
 
+
     public function edit($id)
     {
         $Order = Order::findOrderById($id);
-        
-        return view('admin.order.edit', compact('Order'));
+        $stores = Store::getAllStores();
+        $users = User::all();
+        return view('admin.order.edit', compact('Order', 'stores', 'users'));
     }
 
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
     {
         $Order = Order::findOrderById($id);
 
         if ($Order) {
             $Order->updateOrder($request->validated());
             // return response()->json(new OrderResource($Order));
-            return view('admin.order.update', compact('Order'));
+            return redirect()->route('order.index')->with([
+                'success' => 'Order updated successful',
+            ]);
         } else {
             return response()->json([
                 'message' => 'We could not find the Order.'
@@ -72,9 +91,9 @@ class OrderController extends Controller
 
         if ($Order) {
             $Order->deleteOrder();
-            return response()->json([
-                'message' => 'Order deleted successfully.'
-            ], 200);
+            return redirect()->route('order.index')->with([
+                'success' => 'Order deleted successful',
+            ]);
         } else {
             return response()->json([
                 'message' => 'We could not find the Order.'

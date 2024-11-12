@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             StatusTableSeeder::class,
             PriceTierTableSeeder::class,
             OrdersTableSeeder::class,
-            OrderItemTableSeeder::class,
             OrderContributionTableSeeder::class,
         ]);
     }

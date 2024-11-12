@@ -70,4 +70,4 @@
 
 </body>
 </html>
-<?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/admin/layout/master.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\Reatail-And-Whole\resources\views/admin/layout/master.blade.php ENDPATH**/ ?>

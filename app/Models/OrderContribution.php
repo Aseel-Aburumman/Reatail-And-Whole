@@ -10,7 +10,7 @@ class OrderContribution extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_item_id',
+        'order_id',
         'retailer_id',
         'quantity',
 
@@ -18,9 +18,9 @@ class OrderContribution extends Model
 
     ];
 
-    public function orderItem()
+    public function order()
     {
-        return $this->belongsTo(OrderItem::class);
+        return $this->belongsTo(Order::class);
     }
 
     public function retailer()

@@ -13,7 +13,6 @@
             <div class="card-body">
                 <form action="{{ route('admin.order.store') }}" method="POST">
                     @csrf
-
                     <input type="hidden" name="status_id" value="1">
 
                     <div class="form-group mb-3">
@@ -77,6 +76,8 @@
                         <label for="deadline">Deadline</label>
                         <input type="date" class="form-control" id="deadline" name="deadline" required>
                     </div>
+
+
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('order.index') }}" class="btn btn-secondary">Back to Order List</a>
                         <button type="submit" class="btn btn-primary">Create Order</button>

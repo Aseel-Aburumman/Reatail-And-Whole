@@ -29,4 +29,4 @@
         </li>
     </ul>
 </nav>
-<?php /**PATH C:\Users\Orange\Desktop\Reatail-And-Whole\resources\views/admin/layout/nav.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\Reatail-And-Whole\resources\views/admin/layout/nav.blade.php ENDPATH**/ ?>

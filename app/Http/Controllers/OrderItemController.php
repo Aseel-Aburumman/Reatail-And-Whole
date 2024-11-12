@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderItem;
+use App\Models\Order;
+use App\Models\OrderContribution;
+use App\Models\User;
+
 use App\Http\Requests\OrderItemRequest;
 use App\Http\Resources\OrderItemResource;
 use Illuminate\Http\Request;
@@ -17,9 +21,10 @@ class OrderItemController extends Controller
 
     public function show($id)
     {
-        $orderItem = OrderItem::findOrderItemById($id);
+        $Order = Order::findOrderById($id);
+        $orderItem = OrderItem::where('order_id', $id);
         if ($orderItem) {
-            return response()->json(new OrderItemResource($orderItem));
+            return view('admin.orderIitem.show', compact('orderItem', 'Order'));
         } else {
             return response()->json(['message' => 'Order item not found.'], 404);
         }
@@ -29,6 +34,14 @@ class OrderItemController extends Controller
     {
         $orderItem = OrderItem::createOrderItem($request->validated());
         return response()->json(new OrderItemResource($orderItem), 201);
+    }
+
+    public function edit($id)
+    {
+        $users = User::all();
+        $Ordercontribution = OrderContribution::findContributionById($id);
+
+        return view('admin.orderIitem.edit', compact('Ordercontribution', 'users'));
     }
 
     public function update(OrderItemRequest $request, $id)
