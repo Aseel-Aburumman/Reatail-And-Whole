@@ -23,10 +23,11 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $this->user,
+            'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $this->route('id'),
             'phone' => 'sometimes|required|string|max:15',
             'location' => 'sometimes|required|string|max:255',
-            'password' => 'nullable|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8',
+            'role' => 'required|string|exists:roles,name', // Ensure the role exists in roles table
         ];
     }
 }

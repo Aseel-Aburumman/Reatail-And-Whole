@@ -22,47 +22,65 @@ class ProductController extends Controller
 
 
     // Create a new product
-    public function store(ProductRequest $request): JsonResponse
+    public function store(ProductRequest $request)
     {
         $product = Product::createProduct($request->validated());
-        return response()->json(new ProductResource($product), 201);
+
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
     }
 
+
     // Get a single product by ID
-    public function show(int $id): JsonResponse
+    public function show(int $id)
     {
         $product = Product::findProductById($id);
 
         if (!$product) {
-            return response()->json(['error' => 'Product not found'], 404);
+            abort(404, 'Product not found');
         }
 
-        return response()->json(new ProductResource($product), 200);
+        return view('admin.products.show', compact('product'));
+    }
+
+    public function edit(int $id)
+    {
+        $product = Product::findById($id);
+
+        if (!$product) {
+            return redirect()->route('admin.products.index')->with('error', 'Product not found');
+        }
+
+        return view('admin.products.edit', compact('product'));
     }
 
     // Update a product
-    public function update(ProductRequest $request, int $id): JsonResponse
+    public function update(ProductRequest $request, int $id)
     {
         $product = Product::findProductById($id);
 
         if (!$product) {
-            return response()->json(['error' => 'Product not found'], 404);
+            return redirect()->route('admin.products.index')->with('error', 'Product not found');
         }
 
         $product->updateProduct($request->validated());
-        return response()->json(new ProductResource($product), 200);
+
+        return redirect()->route('admin.products.show', $product->id)->with('success', 'Product updated successfully');
     }
 
+
+
     // Delete a product
-    public function destroy(int $id): JsonResponse
+    public function destroy(int $id)
     {
         $product = Product::findProductById($id);
 
         if (!$product) {
-            return response()->json(['error' => 'Product not found'], 404);
+            return redirect()->route('admin.products.index')->with('error', 'Product not found');
         }
 
         $product->deleteProduct();
-        return response()->json(['message' => 'Product deleted successfully'], 200);
+
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully');
     }
+
 }

@@ -3,46 +3,68 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\User;
 use App\Http\Requests\StoreRequest;
-use App\Http\Resources\StoreResource;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    // Retrieve all stores
+    // Retrieve all stores and display in a Blade view
     public function index()
     {
         $stores = Store::getAllStores();
-        return response()->json(StoreResource::collection($stores));
+        return view('admin.stores.index', compact('stores'));
     }
 
-    // Show a specific store
+    // Show a specific store in a Blade view
     public function show($id)
     {
         $store = Store::findStoreById($id);
         if ($store) {
-            return response()->json(new StoreResource($store));
+            return view('admin.stores.show', compact('store'));
         } else {
-            return response()->json(['message' => 'Store not found.'], 404);
+            return redirect()->route('stores.index')->with('error', 'Store not found.');
         }
     }
 
-    // Create a new store
+    // Display form to create a new store
+    public function create()
+{
+    $users =User::all();
+    return view('admin.stores.create', compact('users')); // تمرير المتغير إلى العرض
+}
+
+
+    // Store the new store data
     public function store(StoreRequest $request)
     {
         $store = Store::createStore($request->validated());
-        return response()->json(new StoreResource($store), 201);
+        return redirect()->route(route: 'stores.index')->with('success', 'Store created successfully.');
     }
 
-    // Update an existing store
+    // Display form to edit an existing store
+    public function edit($id)
+{
+    $users = User::all(); // Fetch all users to populate the dropdown
+    $store = Store::findStoreById($id);
+
+    if ($store) {
+        return view('admin.stores.edit', compact('store', 'users')); // Pass both $store and $users to the view
+    } else {
+        return redirect()->route('stores.index')->with('error', 'Store not found.');
+    }
+}
+
+
+    // Update an existing store data
     public function update(StoreRequest $request, $id)
     {
         $store = Store::findStoreById($id);
         if ($store) {
             $store->updateStore($request->validated());
-            return response()->json(new StoreResource($store));
+            return redirect()->route('stores.index')->with('success', 'Store updated successfully.');
         } else {
-            return response()->json(['message' => 'Store not found.'], 404);
+            return redirect()->route('stores.index')->with('error', 'Store not found.');
         }
     }
 
@@ -52,9 +74,9 @@ class StoreController extends Controller
         $store = Store::findStoreById($id);
         if ($store) {
             $store->deleteStore();
-            return response()->json(['message' => 'Store deleted successfully.']);
+            return redirect()->route('stores.index')->with('success', 'Store deleted successfully.');
         } else {
-            return response()->json(['message' => 'Store not found.'], 404);
+            return redirect()->route('stores.index')->with('error', 'Store not found.');
         }
     }
 }

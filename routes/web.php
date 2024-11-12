@@ -33,33 +33,7 @@ Route::resource('products', ProductController::class);
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/blog-details', function () {
-    return view('blog-details');
-});
-Route::get('/blog', function () {
-    return view('blog');
-});
-Route::get('/cart', function () {
-    return view('cart');
-});
-Route::get('/checkout', function () {
-    return view('checkout');
-});
-Route::get('/confirmation', function () {
-    return view('confirmation');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-Route::get('/elements', function () {
-    return view('elements');
-});
-Route::get('/main', function () {
-    return view('main');
-});
+
 Route::get('/product_details', function () {
     return view('product_details');
 });
@@ -97,11 +71,14 @@ Route::delete('/OrderContribution/{id}', [OrderContributionController::class, 'd
 
 
 
-Route::get('/store', [StoreController::class, 'index']);
-Route::post('/store', [StoreController::class, 'store']);
-Route::get('/store/{id}', [StoreController::class, 'show']);
-Route::put('/store/{id}', [StoreController::class, 'update']);
-Route::delete('/store/{id}', [StoreController::class, 'destroy']);
+Route::get('/store', [StoreController::class, 'index'])->name('stores.index');
+Route::get('/store/create', [StoreController::class, 'create'])->name('store.create'); // إضافة مسار "create"
+Route::post('/store', [StoreController::class, 'store'])->name('store.store');
+Route::get('/store/{id}', [StoreController::class, 'show'])->name('store.show');
+Route::get('/store/{id}/edit', [StoreController::class, 'edit'])->name('store.edit'); // إضافة مسار "edit"
+Route::put('/store/{id}', [StoreController::class, 'update'])->name('store.update');
+Route::delete('/store/{id}', [StoreController::class, 'destroy'])->name('store.destroy');
+
 
 
 // Route for the Admin dashboard
@@ -141,6 +118,8 @@ Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('ad
 
 //     return redirect()->back()->with('error', 'Invalid credentials');
 // })->name('login');
+
+// });
 // });
 
 Route::get('/', function () {
@@ -178,6 +157,11 @@ Route::get('/', function () {
 
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    // Ensure that all routes are properly closed within the group
+});
 
 //admin dashboard
 

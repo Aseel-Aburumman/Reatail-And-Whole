@@ -27,6 +27,7 @@ class UserStoreRequest extends FormRequest
             'phone' => 'required|string|max:15',
             'location' => 'required|string|max:255',
             'password' => 'required|string|min:8',
+            'role' => 'required|string|exists:roles,name', // Ensure the role exists in roles table
         ];
     }
 }
